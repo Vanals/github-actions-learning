@@ -103,6 +103,7 @@ jobs:
     needs: check-bats-version
     steps:
       - run: echo "$github.base_ref"
+      - run: echo toJSON(${{ github.event }})
   
   test-cy:
     runs-on: ubuntu-22.04
@@ -116,8 +117,6 @@ jobs:
         with:
           build: npm run build
           start: npm start
-      - name: Test git hub context
-        run: echo toJSON(${{ github.event }})
 
 
 
