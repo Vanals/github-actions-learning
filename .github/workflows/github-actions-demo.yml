@@ -102,8 +102,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: check-bats-version
     steps:
-      - run: echo "$github.base_ref"
-      - run: echo ${{ github.event.base_ref}}
+      - run: echo ${{ github.event.base_ref }}
+      - run: echo ${{ toJSON(github.event.commits[0]) }}
       - run: echo ${{ toJSON(github.event) }}
   
   test-cy:
