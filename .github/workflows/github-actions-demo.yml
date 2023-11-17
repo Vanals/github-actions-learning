@@ -103,7 +103,6 @@ jobs:
     needs: check-bats-version
     steps:
       - run: echo ${{ toJSON(github.event.commits) }}
-      - run: echo "${{ toJSON(github.event.commits | reverse | first).message }}"
       - run: echo ${{ toJSON(github.event) }}
   
   test-cy:
