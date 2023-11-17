@@ -103,7 +103,8 @@ jobs:
     needs: check-bats-version
     steps:
       - run: echo "$github.base_ref"
-      - run: echo toJSON(${{ github.event }})
+      - run: echo ${{ github.base_ref}}
+      - run: echo ${{ github.event }}
   
   test-cy:
     runs-on: ubuntu-22.04
