@@ -106,6 +106,7 @@ jobs:
       # TODO to echo everything
       - run: |
           pr_number=$(gh pr view ${{ github.event.before }} --json number --template "{{.number}}")
+          echo ${{ pr_number }}
   
   test-cy:
     runs-on: ubuntu-22.04
