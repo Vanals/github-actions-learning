@@ -107,9 +107,8 @@ jobs:
       # - run: echo ${{ toJSON(github.event.commits) }}
       # TODO to echo everything
       - run: |
-          echo ${{ toJSON(github.event.before) }}
-          echo ${{ toJSON(github.event) }}
-          # Get the SHA of the latest commit
+          # echo ${{ toJSON(github.event.before) }}
+          # echo ${{ toJSON(github.event) }}
           COMMIT_SHA=$(git rev-parse HEAD)
 
           # Use the gh CLI to get information about the pull request
