@@ -109,6 +109,8 @@ jobs:
           echo "PR Title: $PR_TITLE"
           echo ${{ toJSON(github.event.before) }}
           echo ${{ toJSON(github.event) }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
        
   
   test-cy:
