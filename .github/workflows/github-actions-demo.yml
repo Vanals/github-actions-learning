@@ -101,11 +101,15 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+
       - name: Checkout code
         uses: actions/checkout@v2
-      - run: |
+      - if: ${{ github.ref_name }} == 'main'
+        run: |
           # Get the SHA of the commit before the push
           BEFORE_SHA=${{ github.event.before }}
+
+          echo $BEFORE_SHA
           
           # Get the SHA of the commit after the push
           AFTER_SHA=${{ github.sha }}
@@ -114,6 +118,10 @@ jobs:
           COMMIT_MESSAGE=$(git log --format=%B $AFTER_SHA -n 1)
 
           echo $COMMIT_MESSAGE
+
+          echo ${{ github.ref_name == 'main' }}
+
+        
        
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
