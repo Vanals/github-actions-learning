@@ -118,8 +118,8 @@ jobs:
 
           echo $COMMIT_MESSAGE
 
-          echo $(git.ref_name)
-          echo $(git.ref)
+          echo $(github.ref_name)
+          echo $(github.ref)
         # if: ${{ git.ref_name }} === 'refs/heads/main'
        
         env:
