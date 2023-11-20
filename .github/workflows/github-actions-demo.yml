@@ -110,9 +110,9 @@ jobs:
           # Get information about the commit
           COMMIT_MESSAGE=$(git log --format=%B -n 1 $COMMIT_SHA)
 
-          # Extract the branch name from the commit message
-          BRANCH_NAME=$(echo "$COMMIT_MESSAGE" | awk -F'/' '{print $NF}' | awk '{print $1}')
-        
+          # Extract the branch name from the commit message using a regex
+          BRANCH_NAME=$(echo "$COMMIT_MESSAGE" | grep -o -P '(?<=Merge pull request #\d+ from ).*')
+          
           echo "Merged Branch name: $BRANCH_NAME"
        
         env:
