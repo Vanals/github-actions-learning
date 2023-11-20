@@ -119,6 +119,8 @@ jobs:
 
           echo $COMMIT_MESSAGE
 
+          echo ${{ github.ref_name }} == 'main'
+
         
        
         env:
