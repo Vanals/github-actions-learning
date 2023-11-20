@@ -104,16 +104,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - run: |
-          # Get the SHA of the latest commit
-          COMMIT_SHA=$(git rev-parse HEAD)
-
-          # Get information about the commit
-          COMMIT_MESSAGE=$(git log --format=%B -n 1 $COMMIT_SHA)
-
-          # Extract the branch name from the commit message using sed
-          BRANCH_NAME=$(echo "$COMMIT_MESSAGE" | sed -n 's/Merge pull request #[0-9]* from \(.*\)/\1/p')
+          # Get the SHA of the commit before the push
+          BEFORE_SHA=${{ github.event.before }}
           
-          echo "Merged Branch name: $BRANCH_NAME"
+          # Get the SHA of the commit after the push
+          AFTER_SHA=${{ github.sha }}
+
+          # Get the commit message of the merge commit
+          COMMIT_MESSAGE=$(git log --format=%B $AFTER_SHA -n 1)
+
+          echo $COMMIT_MESSAGE
        
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
