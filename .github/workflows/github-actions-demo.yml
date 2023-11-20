@@ -111,7 +111,7 @@ jobs:
           COMMIT_MESSAGE=$(git log --format=%B -n 1 $COMMIT_SHA)
 
           # Extract the branch name from the commit message using sed
-          BRANCH_NAME=$(echo "$COMMIT_MESSAGE" | sed -n 's/Merge pull request #\([0-9]*\) from \(.*\)/\2/p')
+          BRANCH_NAME=$(echo "$COMMIT_MESSAGE" | sed -n 's/Merge pull request #[0-9]* from \(.*\)/\1/p')
           
           echo "Merged Branch name: $BRANCH_NAME"
        
