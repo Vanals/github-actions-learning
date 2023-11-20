@@ -105,10 +105,13 @@ jobs:
       - run: echo ${{ toJSON(github.event.commits) }}
       # TODO to echo everything
       - run: |
-          pr_title=$(gh pr view ${{ github.event.before }} --json title --template "{{.title}}")
-          echo ${{ pr_title }}
+          PR_TITLE=$(gh pr view ${{ github.event.before }} --json title --template "{{.title}}")
+          echo "PR Title: $PR_TITLE"
           echo ${{ github.event.before }}
           echo ${{ github.event }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+       
   
   test-cy:
     runs-on: ubuntu-22.04
