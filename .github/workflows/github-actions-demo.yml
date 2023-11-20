@@ -108,9 +108,12 @@ jobs:
           COMMIT_SHA=$(git rev-parse HEAD)
 
           # Get information about the commit
-          COMMIT_TITLE=$(git log --format=%B -n 1 $COMMIT_SHA)
-          
-          echo "Merged Commit title: $COMMIT_TITLE"
+          COMMIT_MESSAGE=$(git log --format=%B -n 1 $COMMIT_SHA)
+
+          # Extract the branch name from the commit message
+          BRANCH_NAME=$(echo "$COMMIT_MESSAGE" | awk -F'/' '{print $NF}' | awk '{print $1}')
+        
+        echo "Merged Branch name: $BRANCH_NAME"
        
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
