@@ -117,7 +117,7 @@ jobs:
           COMMIT_MESSAGE=$(git log --format=%B $AFTER_SHA -n 1)
 
           echo $COMMIT_MESSAGE
-      - if: ${{ git.ref_name }} === 'refs/heads/main'
+        if: ${{ git.ref_name }} === 'refs/heads/main'
        
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
