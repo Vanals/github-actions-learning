@@ -104,7 +104,8 @@ jobs:
 
       - name: Checkout code
         uses: actions/checkout@v2
-      - run: |
+      - if: ${{ github.ref_name }} === 'main'
+        run: |
           # Get the SHA of the commit before the push
           BEFORE_SHA=${{ github.event.before }}
 
@@ -118,9 +119,7 @@ jobs:
 
           echo $COMMIT_MESSAGE
 
-          echo ${{ github.ref_name }}
-          echo ${{ github.ref }}
-        # if: ${{ git.ref_name }} === 'refs/heads/main'
+        
        
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
