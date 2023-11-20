@@ -103,13 +103,9 @@ jobs:
     needs: check-bats-version
     steps:
       - run: echo ${{ toJSON(github.event.commits) }}
-      - name: Get last commit message
-        id: get_commit
-        run: echo "::set-output name=commit_message::$(git log --format=%B -n 1 ${{ github.sha }})"
-      - name: Print commit message
-        run: echo "Last commit message ${{ steps.get_commit.outputs.commit_message }}"
       # TODO to echo everything
-      # - run: echo ${{ toJSON(github.event) }}
+      - run: |
+          pr_number=$(gh pr view ${{ github.event.before }} --json number --template "{{.number}}")
   
   test-cy:
     runs-on: ubuntu-22.04
