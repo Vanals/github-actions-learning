@@ -106,12 +106,13 @@ jobs:
       # - run: echo ${{ toJSON(github.event.commits) }}
       # TODO to echo everything
       - run: |
+          # Get the SHA of the latest commit
           COMMIT_SHA=$(git rev-parse HEAD)
 
-          # Use the gh CLI to get information about the pull request
-          PR_TITLE=$(gh pr view --json title --template "{{.title}}" $COMMIT_SHA)
-
-          echo "Merged PR title: $PR_TITLE"
+          # Get information about the commit
+          COMMIT_TITLE=$(git log --format=%B -n 1 $COMMIT_SHA)
+          
+          echo "Merged Commit title: $COMMIT_TITLE"
        
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
