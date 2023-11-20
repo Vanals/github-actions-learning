@@ -104,17 +104,8 @@ jobs:
     steps:
       - run: echo ${{ toJSON(github.event.commits) }}
       # TODO to echo everything
-      - name: Install gh CLI
-      run: |
-        sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
-        sudo apt-add-repository -y https://cli.github.com/packages
-        sudo apt-get update
-        sudo apt-get install gh -y
       - run: |
-          PR_TITLE=$(gh pr view ${{ github.event.before }} --json title --template "{{.title}}")
-          # echo "PR Title: $PR_TITLE"
-          # echo ${{ github.event.before }}
-          # echo ${{ github.event }}
+          echo ${{ github.event }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
        
