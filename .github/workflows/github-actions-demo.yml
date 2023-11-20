@@ -103,7 +103,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        run: |
+      - run: |
           # Get the SHA of the commit before the push
           BEFORE_SHA=${{ github.event.before }}
 
@@ -118,7 +118,7 @@ jobs:
           echo $COMMIT_MESSAGE
 
           echo ${{ github.ref_name == 'main' }}
-        - run: echo ${{ COMMIT_MESSAGE }}
+      - run: echo ${{ COMMIT_MESSAGE }}
 
         
        
