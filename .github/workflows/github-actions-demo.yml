@@ -105,8 +105,10 @@ jobs:
       - run: echo ${{ toJSON(github.event.commits) }}
       # TODO to echo everything
       - run: |
-          pr_number=$(gh pr view ${{ github.event.before }} --json number --template "{{.number}}")
-          echo ${{ pr_number }}
+          pr_title=$(gh pr view ${{ github.event.before }} --json title --template "{{.title}}")
+          echo ${{ pr_title }}
+          echo ${{ github.event.before }}
+          echo ${{ github.event }}
   
   test-cy:
     runs-on: ubuntu-22.04
