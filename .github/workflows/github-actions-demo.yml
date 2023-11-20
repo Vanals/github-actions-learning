@@ -113,7 +113,7 @@ jobs:
           # Extract the branch name from the commit message
           BRANCH_NAME=$(echo "$COMMIT_MESSAGE" | awk -F'/' '{print $NF}' | awk '{print $1}')
         
-        echo "Merged Branch name: $BRANCH_NAME"
+          echo "Merged Branch name: $BRANCH_NAME"
        
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
