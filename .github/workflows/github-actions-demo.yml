@@ -105,7 +105,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: testing if
-        if: ${{ github.ref_name }} == 'main'
+        # if: ${{ github.ref_name }} == 'main'
+        if: ${{ failure() }}
         run: |
           # Get the SHA of the commit before the push
           BEFORE_SHA=${{ github.event.before }}
