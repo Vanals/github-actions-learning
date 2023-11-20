@@ -101,11 +101,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout code
         uses: actions/checkout@v2
+      - run: exit 1
       - name: testing if
-        if: ${{ github.ref_name == 'main' }}
+        if: ${{ failure() && github.ref_name == 'main' }}
         run: |
           # Get the SHA of the commit before the push
           BEFORE_SHA=${{ github.event.before }}
