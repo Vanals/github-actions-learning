@@ -106,9 +106,9 @@ jobs:
       # TODO to echo everything
       - run: |
           # PR_TITLE=$(gh pr view ${{ github.event.before }} --json title --template "{{.title}}")
-          # echo "PR Title: $PR_TITLE"
+          echo "PR Title: $PR_TITLE"
           echo ${{ github.event.before }}
-          # echo ${{ github.event }}
+          echo ${{ github.event }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
        
